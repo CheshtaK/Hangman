@@ -4,7 +4,10 @@ random.shuffle(answerlist)
 answer = list(answerlist[0])
 
 display = []
+used = []
+
 display.extend(answer)
+used.extend(display)
 
 for i in range(len(display)):
     display[i] = "_"
@@ -18,9 +21,15 @@ while count < len(answer):
     print(count)
 
     for i in range(len(answer)):
-        if answer[i] == guess :
+        if answer[i] == guess and guess in used:
             display[i] = guess
             count = count + 1
+            used.remove(guess)
+
+    if guess not in display:
+        print("Sorry, wrong guess")
+
+    print("You have guessed: ",count,"correct letters.")
 
     print(' '.join(display))
     print()
